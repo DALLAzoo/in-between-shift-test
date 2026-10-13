@@ -25,12 +25,12 @@ function renderSiteStatus(){const holiday=holidayActive(),ready=settingsReady&&!
  hs.hidden=!(holiday||scheduled);
  if(holiday||scheduled)hs.textContent=holidayMessage;
  const letter=ready&&intakeAllowed('letter'),live=ready&&intakeAllowed('realtime');
- $r('ssLetterIntake').textContent=!ready?'상태 확인 중':letter?'보내기 가능':'보내기 잠시 중단';
- const answerStatus=!ready?'답변 상태 확인 중':holiday?'답변 휴무 중':koreaHour()>=10&&koreaHour()<22?'순차 답변 중':'답변 쉬는 시간';
+ $r('ssLetterIntake').textContent=!ready?'확인 중…':letter?'보내기 가능':'보내기 잠시 중단';
+ const answerStatus=!ready?'확인 중…':holiday?'답변 휴무 중':koreaHour()>=10&&koreaHour()<22?'순차 답변 중':'답변 쉬는 시간';
  $r('ssLetterAnswerBadge').textContent=answerStatus;
  const state=holiday?'holiday':siteSettings.current;
- $r('ssLiveState').textContent=!ready?'상태 확인 중':state==='holiday'?'상담 휴무 중':state==='busy'?'다른 분과 상담 중':state==='closed'?'오늘 상담 종료':'바로 상담 가능';
- const bookingStatus=!ready?'예약 상태 확인 중':live?'예약 접수 중':'예약 잠시 불가';
+ $r('ssLiveState').textContent=!ready?'확인 중…':state==='holiday'?'상담 휴무 중':state==='busy'?'다른 분과 상담 중':state==='closed'?'오늘 상담 종료':'바로 상담 가능';
+ const bookingStatus=!ready?'확인 중…':live?'예약 접수 중':'예약 잠시 불가';
  $r('ssBookingBadge').textContent=bookingStatus;
  const setTone=(id,tone)=>{$r(id).dataset.tone=tone};
  setTone('ssLetterIntake',!ready?'neutral':letter?'green':'red');
