@@ -1046,16 +1046,6 @@ body.mobile-page-mode[data-mobile-view="about"] .mobile-menu-toggle::after{
 
 /* Original style block 49 */
 
-/* Only the four status values wait for settings; preserve the existing panel geometry. */
-#siteStatus .ss-status-grid[data-loading="true"]{position:relative;min-height:74px}
-#siteStatus .ss-status-grid[data-loading="true"] .ss-status-card{visibility:hidden!important}
-#siteStatus .ss-status-grid[data-loading="true"]::after{
- content:"상태 확인 중…";position:absolute;inset:0;display:flex;align-items:center;
- justify-content:center;color:#e2c989;font-size:12px;font-weight:600;letter-spacing:.02em;
- pointer-events:none
-}
-
-
 /* Original style block 50 */
 
 #siteStatus{max-width:660px;margin:22px 0 0;padding:17px 18px;border:1px solid rgba(236,211,168,.32);border-radius:17px;background:rgba(22,19,30,.82);color:#f8f1f7;position:relative;z-index:2;box-shadow:0 10px 30px rgba(0,0,0,.18)}
@@ -1267,26 +1257,3 @@ body.mobile-page-mode[data-mobile-view="about"] .mobile-menu-toggle::after{
 .ibs-install-help button{margin-top:9px;border:1px solid #cfae74;background:#30281e;color:#f7dcaa;padding:8px 12px;border-radius:7px;cursor:pointer}
 @media(min-width:700px){.ibs-install-wrap{max-width:340px}}
 
-
-/* STAGE 5: 로딩 중 상태 표시 영역의 초기 높이 흔들림 진단.
-   실제 상태가 도착하면 data-loading=false가 되어 기존 디자인 그대로 표시됨. */
-#siteStatus .ss-status-grid[data-loading="true"] {position:relative;}
-#siteStatus .ss-status-grid[data-loading="true"] .ss-pill {visibility:hidden !important;}
-#siteStatus .ss-status-grid[data-loading="true"]::after {
-  content:"상태 확인 중…";position:absolute;inset:0;display:flex;
-  align-items:center;justify-content:center;pointer-events:none;
-  color:#c9c5cf;font-size:12px;font-weight:700;letter-spacing:.02em;
-}
-
-
-/* STAGE 6: keep both status rows and their separator visible during loading.
-   Loading text sits inside the existing first badge area, not across the grid. */
-#siteStatus .ss-status-grid[data-loading="true"] .ss-status-card {visibility:visible !important;}
-#siteStatus .ss-status-grid[data-loading="true"]::after {content:none !important;display:none !important;}
-#siteStatus .ss-status-grid[data-loading="true"] .ss-pill {visibility:hidden !important;}
-#siteStatus .ss-status-grid[data-loading="true"] .ss-status-card:first-child .ss-badges {position:relative;}
-#siteStatus .ss-status-grid[data-loading="true"] .ss-status-card:first-child .ss-badges::after {
- content:"상태 확인 중…";position:absolute;inset:0;display:flex;align-items:center;
- justify-content:center;color:#e2c989;font-size:11px;font-weight:650;
- white-space:nowrap;pointer-events:none;
-}
