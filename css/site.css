@@ -1257,3 +1257,13 @@ body.mobile-page-mode[data-mobile-view="about"] .mobile-menu-toggle::after{
 .ibs-install-help button{margin-top:9px;border:1px solid #cfae74;background:#30281e;color:#f7dcaa;padding:8px 12px;border-radius:7px;cursor:pointer}
 @media(min-width:700px){.ibs-install-wrap{max-width:340px}}
 
+
+
+/* STAGE 8 — reserve room for two-line live status text before Firebase resolves.
+   Do not change visibility, scrollbar behavior, or the notification button. */
+#siteStatus .ss-status-grid {
+  grid-template-rows:repeat(2,minmax(72px,auto)) !important;
+}
+#siteStatus .ss-status-card {
+  min-height:72px !important;
+}
