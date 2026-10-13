@@ -650,6 +650,15 @@ if(new URLSearchParams(location.search).get('admin')==='1'){
 @media(prefers-reduced-motion:reduce){.hero-art{transition:none}}
 </style>
 </head><body>
+<script id="mobileFirstPaintInit">
+/* 모바일 첫 화면: 본문이 그려지기 전에 기존 화면 표시 규칙을 적용 */
+if (window.matchMedia('(max-width:720px)').matches) {
+  document.body.classList.add('mobile-page-mode');
+  var initialView = decodeURIComponent(location.hash.slice(1));
+  if (!['home','prices','tarot','ledger','about'].includes(initialView)) initialView = 'home';
+  document.body.dataset.mobileView = initialView;
+}
+</script>
 
 <!-- SECTION: MOBILE-SCROLL-HINT | 추가 내용이 있을 때 우측 하단에 밝게 점멸하는 형광 MORE 삼각형 -->
 <div class="mobile-scroll-hint" id="mobileScrollHint" aria-hidden="true"><span class="more-triangle"><span class="more-label">MORE</span></span></div>
@@ -1318,7 +1327,7 @@ if(!currentLedger())$('pointAdminStatus').textContent='고객을 선택한 뒤 �
   requestAnimationFrame(queueScrollHint);
  }
  function sync(){
-  if(mq.matches){body.classList.add('mobile-page-mode');show(viewFromHash(),true);}
+  if(mq.matches){body.classList.add('mobile-page-mode');show(viewFromHash(),!initialSync);}
   else{body.classList.remove('mobile-page-mode');body.removeAttribute('data-mobile-view');}
   queueScrollHint();
  }
@@ -1339,7 +1348,9 @@ if(!currentLedger())$('pointAdminStatus').textContent='고객을 선택한 뒤 �
  window.addEventListener('hashchange',()=>{if(mq.matches)show(viewFromHash(),true)});
  window.addEventListener('popstate',()=>{if(mq.matches)show(viewFromHash(),true)});
  mq.addEventListener('change',sync);
+ let initialSync=true;
  sync();
+ initialSync=false;
 })();
 </script>
 <div class="guide-modal" id="consultGuideModal" role="dialog" aria-modal="true" aria-labelledby="consultGuideTitle" hidden><div class="guide-modal-dialog"><div class="guide-modal-head"><strong id="consultGuideTitle">상담 이용 안내</strong></div><div class="guide-modal-body" id="consultGuideBody"></div><div class="guide-modal-foot"><button type="button" class="guide-modal-confirm" id="consultGuideConfirm">안내 사항을 확인했습니다 ✓</button></div></div></div><script>
