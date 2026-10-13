@@ -38,7 +38,10 @@ function renderSiteStatus(){const holiday=holidayActive(),ready=settingsReady&&!
  setTone('ssLiveState',!ready?'neutral':state==='holiday'?'red':state==='available'?'green':'yellow');
  setTone('ssBookingBadge',!ready?'neutral':live?'green':'red');
  hs.dataset.tone=holiday?'red':'yellow';
- $r('ssAlertBtn').hidden=!ready||siteSettings.alertVisible===false;
+ const alertBtn=$r('ssAlertBtn');
+ // Reserve the existing button slot while Firebase loads; do not change its layout.
+ alertBtn.hidden=ready&&siteSettings.alertVisible===false;
+ alertBtn.style.visibility=ready&&siteSettings.alertVisible!==false?'visible':'hidden';
  const screen=$r('realtimeScreen');const type=screen&&!screen.hidden?'realtime':'letter';
  const allowed=ready&&intakeAllowed(type);
  const price=$r('consultPriceStatus');price.hidden=allowed;price.textContent=!ready?'접수 상태를 확인하는 중입니다. 확인 전에는 신청할 수 없습니다.':type==='realtime'?'현재 실시간 예약을 잠시 받지 않습니다. 상품과 가격은 확인할 수 있습니다.':'현재 비실시간 질문 접수를 잠시 중단했습니다. 상품과 가격은 확인할 수 있습니다.';
